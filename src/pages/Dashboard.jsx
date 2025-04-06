@@ -1,8 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../redux/features/auth/authApiSlice";
 import { useGetUserQuery } from "../redux/features/users/userApiSlice";
+import Cookies from "js-cookie";
 import styles from "../styles/Dashboard.module.css";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const { data: users, isLoading, isError, error } = useGetUserQuery();
+  const [sendLogout] = useLogoutMutation();
+
+  const handleLogout = () => {
+    sendLogout();
+    Cookies.remove("accessToken");
+    navigate("/auth/login");
+  };
 
   if (isLoading) return <p className={styles.message}>Loading...</p>;
   if (isError)
@@ -12,14 +23,19 @@ const Dashboard = () => {
       </p>
     );
 
-  // Assuming the last user is the authenticated one (customize as needed)
   const authUser = users?.[users.length - 1];
 
   return (
     <div className={styles.dashboardContainer}>
+      <button className={styles.logoutButton} onClick={handleLogout}>
+        Logout
+      </button>
+
       <div className={styles.dashboardContent}>
-        <h2 className={styles.dashboardTitle}>Welcome, {authUser?.name}!</h2>
-        <p className={styles.userEmail}>{authUser?.email}</p>
+        <div className={styles.dashboardHeader}>
+          <h2 className={styles.dashboardTitle}>Welcome, {authUser?.name}!</h2>
+          <p className={styles.userEmail}>{authUser?.email}</p>
+        </div>
 
         <h3 className={styles.tableTitle}>All Registered Users</h3>
         <div className={styles.tableWrapper}>

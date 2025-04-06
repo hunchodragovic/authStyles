@@ -1,42 +1,70 @@
 .dashboardContainer {
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  background-color: #e0f2fe;
   padding: 2rem;
+  min-height: 100vh;
+  background-color: #f0f9ff;
+}
+
+.logoutButton {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #dc2626;
 }
 
 .dashboardContent {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 900px;
 }
 
-.dashboardTitle {
-  font-size: 26px;
-  color: #0284c7;
-  margin-bottom: 0.5rem;
+.dashboardHeader {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
   text-align: center;
 }
 
+.dashboardTitle {
+  font-size: 28px;
+  color: #0284c7;
+  margin-bottom: 0.5rem;
+}
+
 .userEmail {
-  text-align: center;
-  color: #475569;
-  margin-bottom: 2rem;
+  color: #1e3a8a;
+  font-size: 16px;
+  margin-bottom: 1rem;
 }
 
 .tableTitle {
   font-size: 20px;
-  color: #1e3a8a;
+  font-weight: 600;
+  color: #0ea5e9;
+  text-align: center;
   margin-bottom: 1rem;
-  text-align: left;
 }
 
 .tableWrapper {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   overflow-x: auto;
 }
 
@@ -47,9 +75,10 @@
 
 .userTable th,
 .userTable td {
-  padding: 0.75rem 1rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
   text-align: left;
-  border-bottom: 1px solid #cbd5e1;
+  font-size: 15px;
 }
 
 .userTable th {
@@ -57,13 +86,13 @@
   color: #0369a1;
 }
 
-.userTable tr:hover {
-  background-color: #f0f9ff;
+.userTable tbody tr:nth-child(odd) {
+  background-color: #f8fafc;
 }
 
 .message {
   text-align: center;
-  margin-top: 3rem;
   font-size: 18px;
   color: #ef4444;
+  padding: 2rem;
 }
