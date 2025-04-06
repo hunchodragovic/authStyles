@@ -1,6 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-export const store = configureStore({
-  reducer: {}, // Add your reducers here
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+import { apiSlice } from "./api/apiSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
+const store = configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  }, // Add your reducers here
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: import.meta.env.VITE_NODE_ENV === "development",
 });
+setupListeners(store.dispatch);
+export default store;

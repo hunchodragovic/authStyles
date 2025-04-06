@@ -1,8 +1,11 @@
+import RegisterForm from "../../components/auh/RegisterForm";
 
 const Register = () => {
   return (
-    <div>Register</div>
-  )
-}
+    <>
+      <RegisterForm />
+    </>
+  );
+};
 
-export default Register
+export default Register;
