@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "../../styles/RegisterForm.module.css";
 import { useRegisterMutation } from "../../redux/features/auth/authApiSlice";
-
+import Cookies from "js-cookie"; // Import js-cookie to manage cookies
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const [useInputs, setUseInputs] = useState({
     name: "",
     email: "",
@@ -18,7 +20,21 @@ const RegisterForm = () => {
 
     // Call the register mutation
     try {
-      await register(useInputs).unwrap(); // Use unwrap to handle success/error
+      const { data } = await register({
+        name: useInputs.name,
+        email: useInputs.email,
+        password: useInputs.password,
+      });
+      const accessToken = data?.accessToken;
+      if (accessToken) {
+        Cookies.set("accessToken", accessToken, { expires: 1 });
+        setUseInputs({
+          name: "",
+          email: "",
+          password: "",
+        });
+        navigate("/dashboard"); // Redirect to the login page after successful registration
+      }
     } catch (err) {
       console.error("Registration failed: ", err);
     }

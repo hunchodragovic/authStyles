@@ -8,6 +8,7 @@ import {
 import RootLayout from "./components/RootLayout";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
 const App = () => {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
+        <Route path="dashboard" element={<Dashboard />} />
       </Route>
     )
   );
