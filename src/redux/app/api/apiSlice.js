@@ -4,7 +4,9 @@ const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers) => {
-    const token = Cookies.get("token");
+    const token = Cookies.get("accessToken");
+    console.log(token);
+
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }

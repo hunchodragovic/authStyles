@@ -10,7 +10,16 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    login: builder.mutation({
+      query: (credentials) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: { ...credentials },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useRegisterMutation } = authApiSlice;
+// Export the auto-generated hooks for these endpoints
+export const { useRegisterMutation, useLoginMutation } = authApiSlice;
