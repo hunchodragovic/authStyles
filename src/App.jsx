@@ -13,12 +13,13 @@ import Dashboard from "./pages/Dashboard";
 import Cookies from "js-cookie";
 import "./App.css";
 import RequireAuth from "./pages/auth/RequireAuth";
+import Home from "./components/Home";
 const App = () => {
   const accessToken = Cookies.get("accessToken");
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route index element={<h1>Auth app</h1>} />
+        <Route index element={<Home />} />
         <Route path="auth">
           <Route
             path="login"
