@@ -18,7 +18,14 @@ const Home = () => {
           <Link to="/dashboard" className={styles.btn}>
             Go to Dashboard
           </Link>
+          <Link
+            to="https://authenticationapp-lhdt.onrender.com"
+            className={styles.btn}
+          >
+            Backend API
+          </Link>
         </div>
+        <div></div>
       </div>
     </div>
   );
